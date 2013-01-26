@@ -6,7 +6,7 @@
 var express = require('express')
 var app = express();
 
-var media = require('./media');
+var media = require('./media-api');
 
 app.use(media);
 
