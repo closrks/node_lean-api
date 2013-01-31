@@ -7,11 +7,11 @@ function Helper(config) {
 	
 	this.connection = config.connection instanceof Connection
 		? config.connection
-		: mongoose.createConnection(config.host, config.db, config.port);
+		: mongoose.createConnection(config.host, config.dbName, config.port);
 
-	var schema = new Schema(config.schema, { collection: config.collection });
+	var schema = new Schema(config.schema, { collection: config.collectionName });
 
-	this.model = this.connection.model(config.collection, schema);
+	this.model = this.connection.model(config.modelName, schema);
 };
 
 // public function

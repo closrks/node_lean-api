@@ -19,19 +19,12 @@
 // });
 
 var mongoose = require('mongoose');
-var mongooseHelper = new (require('./helper.js'))({
-      connection: null
-    , host: 'localhost'
-    , db: 'mediadb'
-    , port: 27017
-    , collection: 'media'
-    , schema: {
-        _id: mongoose.Schema.ObjectId
-    }
-});
+var dbconfig = require('./mongoose-config.js')();
+dbconfig.connection = require('./mongoose-mockery.js')([1,2,3]);
+var dbhelper = new (require('./mongoose-helper.js'))(dbconfig);
 
 exports.index = function(req, res, next) {
-    mongooseHelper.index({},null,null,function(err, results) {
+    dbhelper.index({},null,null,function(err, results) {
         res.send(results);
     });
 
