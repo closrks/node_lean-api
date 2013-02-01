@@ -10,4 +10,4 @@ MediaController.prototype.index = function(req, res, next) {
     });
 };
 
-module.exports = Controller;
+module.exports = MediaController;

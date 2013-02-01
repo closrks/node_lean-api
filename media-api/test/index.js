@@ -23,7 +23,6 @@ describe('#controllers', function() {
             	header: function() {},
                 contentType: function (contentType) { },
                 send: function (content) {
-                    console.log(content);
                     should.exist(content);
                     done();
                 }
