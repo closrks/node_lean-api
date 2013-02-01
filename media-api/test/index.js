@@ -1,10 +1,10 @@
 var should = require('should');
 var Controller = require('../controllers');
-var Mockgoose = require('../../mothergoose/mockgoose.js');
+var Mockgoose = require('mothergoose').mock;
 
 describe('#controllers', function() {
 
-	describe('#find()', function () {
+	describe('#index()', function () {
 
 		it('should return array of media as a json', function (done) {
 
