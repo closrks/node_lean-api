@@ -1,11 +1,15 @@
-var media = require('../routes');
 var should = require('should');
+var Controller = require('../controllers');
+var Mockgoose = require('../../mothergoose/mockgoose.js');
 
-describe('media-api', function() {
+describe('#controllers', function() {
 
 	describe('#find()', function () {
 
 		it('should return array of media as a json', function (done) {
+
+            var mockConnection = Mockgoose({data: [1,2,3]});
+            var controller = new Controller({connection: mockConnection});
 
 			var req = {
                 query: {},
@@ -18,8 +22,9 @@ describe('media-api', function() {
             var res = {
             	header: function() {},
                 contentType: function (contentType) { },
-                send: function (media) {
-                    should.exist(media);
+                send: function (content) {
+                    console.log(content);
+                    should.exist(content);
                     done();
                 }
             };
@@ -29,7 +34,7 @@ describe('media-api', function() {
                 done();
             };
 
-            media.find(req, res, next);
+            controller.index(req, res, next);
 		});
 
 	});

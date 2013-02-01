@@ -17,14 +17,14 @@
 // 		});
 // 	}
 // });
+var DbHelper = require('../../mothergoose/mongoose-helper.js');
 
-var mongoose = require('mongoose');
-var dbconfig = require('./mongoose-config.js')();
-dbconfig.connection = require('./mongoose-mockery.js')([1,2,3]);
-var dbhelper = new (require('./mongoose-helper.js'))(dbconfig);
+function Controller(dbconfig) {
+	this.dbhelper = new DbHelper(dbconfig);
+};
 
-exports.index = function(req, res, next) {
-    dbhelper.index({},null,null,function(err, results) {
+Controller.prototype.index = function(req, res, next) {
+    this.dbhelper.index({}, null, null, function(err, results) {
         res.send(results);
     });
 
@@ -34,6 +34,8 @@ exports.index = function(req, res, next) {
 	// 	});
 	// });
 };
+
+module.exports = Controller;
 
 // exports.find = function(req, res, next) {
 // 	var id = req.params.id;

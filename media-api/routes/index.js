@@ -1,4 +1,6 @@
-var controller = require('../controllers');
+var dbconfig = require('../mothergoose/mongoose-config');
+var controller = new (require('../controllers'))(dbconfig);
+
 
 app.get('/media', controller.index);
 app.get('/media/:id', controller.find);
